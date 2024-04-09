@@ -1,23 +1,23 @@
 export default class ValidarCpf {
   constructor(element) {
-    this.element = element;
+    this.element = document.getElementById(element);
+    console.log(this.element);
   }
   clear(cpf) {
-    return cpf.replace(/\D/g, "");
+    return cpf.replace(/\D/gi, "");
   }
   build(cpf) {
-    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g, "$1.$2.$3-$4");
+    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/gi, "$1.$2.$3-$4");
   }
   format(cpf) {
-    const clear = this.clear(cpf);
-    return this.build(clear);
+    return this.build(this.clear(cpf));
   }
-  validar(cpf) {
-    const matchCpf = cpf.match(/(?:\d{3}[-.\s]?){3}\d{2}/g);
+  validation(cpf) {
+    const matchCpf = cpf.match(/(?:\d{3}[-.\s]?){3}\d{2}/gi);
     return matchCpf && matchCpf[0] === cpf;
   }
   returnCPF(cpf) {
-    if (this.validar(cpf.value)) {
+    if (this.validation(cpf.value)) {
       cpf.value = this.format(cpf.value);
       cpf.classList.add("valid");
       cpf.classList.remove("error");
@@ -32,19 +32,26 @@ export default class ValidarCpf {
     this.element.addEventListener("change", () => {
       return this.returnCPF(this.element);
     });
+    this.element.addEventListener("keydown", (event) => {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+      }
+    });
   }
-  addErrorSpan() {
-    const errorElement = document.createElement("span");
-    errorElement.classList.add("error-text");
-    errorElement.innerText = "CPF Inválido";
-    this.element.parentElement.insertBefore(
-      errorElement,
-      this.element.nextElementSibling
-    );
-  }
+  // addErrorSpan() {
+  //   const errorElement = document.createElement("span");
+  //   errorElement.classList.add("error-text");
+  //   errorElement.innerText = "CPF Inválido";
+  //   this.element.parentElement.insertBefore(
+  //     errorElement,
+  //     this.element.nextElementSibling
+  //   );
+  // }
   init() {
-    this.addEvent();
-    this.addErrorSpan();
+    if (this.element) {
+      this.addEvent();
+      // this.addErrorSpan();
+    }
     return this;
   }
 }
