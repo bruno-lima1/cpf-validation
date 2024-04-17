@@ -38,19 +38,19 @@ export default class ValidarCpf {
       }
     });
   }
-  // addErrorSpan() {
-  //   const errorElement = document.createElement("span");
-  //   errorElement.classList.add("error-text");
-  //   errorElement.innerText = "CPF Inválido";
-  //   this.element.parentElement.insertBefore(
-  //     errorElement,
-  //     this.element.nextElementSibling
-  //   );
-  // }
+  addErrorSpan() {
+    const errorElement = document.createElement("span");
+    errorElement.classList.add("error-text");
+    errorElement.innerText = "CPF Inválido";
+    this.element.parentElement.insertBefore(
+      errorElement,
+      this.element.nextElementSibling
+    );
+  }
   init() {
     if (this.element) {
       this.addEvent();
-      // this.addErrorSpan();
+      this.addErrorSpan();
     }
     return this;
   }
