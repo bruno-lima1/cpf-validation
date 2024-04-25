@@ -29,14 +29,14 @@ export default class ValidarCpf {
   returnCPF() {
     this.cpf.value = this.build(this.clear(this.cpf.value))
     // if (this.validation(cpf.value)) {
-    //   cpf.value = this.format(cpf.value);
+    //   cpf.value = this.build(this.clear(this.cpf.value));
     //   cpf.classList.add("valid");
     //   cpf.classList.remove("error");
-    //   // cpf.nextElementSibling.classList.remove("active");
+    //   cpf.nextElementSibling.classList.remove("active");
     // } else {
     //   cpf.classList.add("error");
     //   cpf.classList.remove("valid");
-    //   // cpf.nextElementSibling.classList.add("active");
+    //   cpf.nextElementSibling.classList.add("active");
     // }
   }
   // validation(cpf) {
