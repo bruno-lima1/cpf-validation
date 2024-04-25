@@ -1,7 +1,6 @@
 export default class ValidarCpf {
-  constructor(element) {
-    this.element = document.getElementById(element);
-    console.log(this.element);
+  constructor(cpf) {
+    this.cpf = document.getElementById(cpf);
   }
   clear(cpf) {
     return cpf.replace(/\D/gi, "");
@@ -11,6 +10,24 @@ export default class ValidarCpf {
   }
   format(cpf) {
     return this.build(this.clear(cpf));
+  }
+  init() {
+    if (this.cpf) {
+      this.addEvent();
+      this.addErrorSpan();
+      // console.log(this.clear(this.cpf))
+    }
+    return this;
+  }
+  addEvent() {
+    this.cpf.addEventListener("change", () => {
+      return this.returnCPF(this.cpf);
+    });
+    this.cpf.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+      }
+    });
   }
   validation(cpf) {
     const matchCpf = cpf.match(/(?:\d{3}[-.\s]?){3}\d{2}/gi);
@@ -28,30 +45,13 @@ export default class ValidarCpf {
       cpf.nextElementSibling.classList.add("active");
     }
   }
-  addEvent() {
-    this.element.addEventListener("change", () => {
-      return this.returnCPF(this.element);
-    });
-    this.element.addEventListener("keydown", (event) => {
-      if (event.keyCode === 13) {
-        event.preventDefault();
-      }
-    });
-  }
   addErrorSpan() {
     const errorElement = document.createElement("span");
     errorElement.classList.add("error-text");
     errorElement.innerText = "CPF Inválido";
-    this.element.parentElement.insertBefore(
+    this.cpf.parentElement.insertBefore(
       errorElement,
-      this.element.nextElementSibling
+      this.cpf.nextElementSibling
     );
-  }
-  init() {
-    if (this.element) {
-      this.addEvent();
-      this.addErrorSpan();
-    }
-    return this;
   }
 }
