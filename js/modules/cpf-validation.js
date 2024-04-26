@@ -7,7 +7,7 @@ export default class CpfValidation {
   init() {
     if (this.cpf) {
       this.addEvent();
-      // this.addErrorSpan();
+      this.addErrorSpan();
     }
     return this;
   }
@@ -28,28 +28,27 @@ export default class CpfValidation {
   }
   returnCPF() {
     this.cpf.value = this.build(this.clear(this.cpf.value))
-    // if (this.validation(cpf.value)) {
-    //   cpf.value = this.build(this.clear(this.cpf.value));
-    //   cpf.classList.add("valid");
-    //   cpf.classList.remove("error");
-    //   cpf.nextElementSibling.classList.remove("active");
-    // } else {
-    //   cpf.classList.add("error");
-    //   cpf.classList.remove("valid");
-    //   cpf.nextElementSibling.classList.add("active");
-    // }
+    if (this.validation()) {
+      this.cpf.value = this.build(this.clear(this.cpf.value));
+      this.cpf.classList.add("valid");
+      this.cpf.classList.remove("error");
+      this.cpf.nextElementSibling.classList.remove("active");
+    } else {
+      this.cpf.classList.add("error");
+      this.cpf.classList.remove("valid");
+      this.cpf.nextElementSibling.classList.add("active");
+    }
   }
-  // validation(cpf) {
-  //   const matchCpf = cpf.match(/(?:\d{3}[-.\s]?){3}\d{2}/gi);
-  //   return matchCpf && matchCpf[0] === cpf;
-  // }
-  // addErrorSpan() {
-  //   const errorElement = document.createElement("span");
-  //   errorElement.classList.add("error-text");
-  //   errorElement.innerText = "CPF Inválido";
-  //   this.cpf.parentElement.insertBefore(
-  //     errorElement,
-  //     this.cpf.nextElementSibling
-  //   );
-  // }
+  validation() {
+    const matchCpf = this.cpf.value.match(/(?:\d{3}[-.\s]?){3}\d{2}/gi);
+    return matchCpf && matchCpf[0] === this.cpf.value;
+  }
+  addErrorSpan() {
+    const errorElement = document.createElement("span");
+    errorElement.classList.add("error-text");
+    errorElement.innerText = "CPF Inválido";
+    this.cpf.parentElement.insertBefore(errorElement,
+      this.cpf.nextElementSibling
+    );
+  }
 }

@@ -5,7 +5,8 @@ body {
   background: #000;
   color: #fff;
 }
-button {
+button,
+input {
   font-family: "Rubik", sans-serif;
 }
 h1,
