@@ -49,13 +49,15 @@ label {
   display: block;
   font-weight: bold;
   margin: 10px 0 5px 0;
+  text-align: center;
 }
 input {
-  width: 100%;
   padding: 5px;
   border: 2px solid black;
   font-size: 1rem;
   box-sizing: border-box;
+  display: flex;
+  margin: 0 auto;
 }
 input::placeholder {
   color: rgba(0, 0, 0, 0.2);
@@ -70,6 +72,8 @@ input.valid {
   display: none;
   font-size: .875rem;
   color: red;
+  text-align: center;
+  padding-top: .25rem;
 }
 .error-text.active {
   display: block;

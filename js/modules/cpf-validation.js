@@ -16,9 +16,9 @@ export default class CpfValidation {
     this.cpf.addEventListener("change", this.returnCPF)
   }
   preventDefault(event) {
-    if (event.key === "Enter") {
-      event.preventDefault()
-    }
+    return event.key === "Enter"
+      ? event.preventDefault()
+      : undefined
   }
   clear() {
     return this.cpf.value.replace(/\D/gi, "");
@@ -40,7 +40,7 @@ export default class CpfValidation {
     }
   }
   validation() {
-    const matchCpf = this.cpf.value.match(/(?:\d{3}[-.\s]?){3}\d{2}/gi);
+    const matchCpf = this.cpf.value.match(/(\d{3}[.-]?){3}\d{2}/gi);
     return matchCpf && matchCpf[0] === this.cpf.value;
   }
   addErrorSpan() {
