@@ -28,10 +28,8 @@ export default class CpfValidation {
   }
   returnCPF() {
     return this.validation()
-      ? ((this.cpf.value = this.build(this.clear(this.cpf.value))), this.cpf.classList.add("valid"), this.cpf.classList.remove("error"),
-      this.cpf.nextElementSibling.classList.remove("active"))
-      : (this.cpf.classList.add("error"), this.cpf.classList.remove("valid"),
-      this.cpf.nextElementSibling.classList.add("active"))
+      ? (this.cpf.value = this.build(this.clear(this.cpf.value)), this.cpf.classList.add("valid"), this.cpf.classList.remove("error"), this.cpf.nextElementSibling.classList.remove("active"))
+      : (this.cpf.classList.add("error"), this.cpf.classList.remove("valid"), this.cpf.nextElementSibling.classList.add("active"))
   }
   validation() {
     const matchCpf = this.cpf.value.match(/(\d{3}[.-]?){3}\d{2}/gi);
