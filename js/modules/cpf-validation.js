@@ -1,4 +1,4 @@
-export default class ValidarCpf {
+export default class CpfValidation {
   constructor(cpf) {
     this.cpf = document.getElementById(cpf);
     this.returnCPF = this.returnCPF.bind(this)
@@ -15,16 +15,16 @@ export default class ValidarCpf {
     this.cpf.addEventListener("keydown", this.preventDefault)
     this.cpf.addEventListener("change", this.returnCPF)
   }
+  preventDefault(event) {
+    if (event.key === "Enter") {
+      event.preventDefault()
+    }
+  }
   clear() {
     return this.cpf.value.replace(/\D/gi, "");
   }
   build() {
     return this.cpf.value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/gi, "$1.$2.$3-$4");
-  }
-  preventDefault(event) {
-    if (event.key === "Enter") {
-      event.preventDefault()
-    }
   }
   returnCPF() {
     this.cpf.value = this.build(this.clear(this.cpf.value))

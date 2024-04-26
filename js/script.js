@@ -1,3 +1,3 @@
-import ValidarCpf from "./modules/validar-cpf.js";
-const validarCpf = new ValidarCpf("cpf");
-validarCpf.init();
+import CpfValidation from "./modules/cpf-validation.js";
+const cpfValidation = new CpfValidation("cpf");
+cpfValidation.init();
