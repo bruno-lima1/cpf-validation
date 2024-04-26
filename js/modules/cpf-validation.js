@@ -7,7 +7,7 @@ export default class CpfValidation {
   init() {
     if (this.cpf) {
       this.addEvent();
-      // this.addErrorSpan();
+      this.addErrorSpan()
     }
     return this;
   }
@@ -28,21 +28,19 @@ export default class CpfValidation {
   }
   returnCPF() {
     return this.validation()
-      ? ((this.cpf.value = this.build(this.clear(this.cpf.value))), this.cpf.classList.add("valid"), this.cpf.classList.remove("error"))
-      // this.cpf.nextElementSibling.classList.remove("active"))
-      : (this.cpf.classList.add("error"), this.cpf.classList.remove("valid"))
-      // this.cpf.nextElementSibling.classList.add("active"))
+      ? ((this.cpf.value = this.build(this.clear(this.cpf.value))), this.cpf.classList.add("valid"), this.cpf.classList.remove("error"),
+      this.cpf.nextElementSibling.classList.remove("active"))
+      : (this.cpf.classList.add("error"), this.cpf.classList.remove("valid"),
+      this.cpf.nextElementSibling.classList.add("active"))
   }
   validation() {
     const matchCpf = this.cpf.value.match(/(\d{3}[.-]?){3}\d{2}/gi);
     return matchCpf && matchCpf[0] === this.cpf.value;
   }
-  // addErrorSpan() {
-  //   const errorElement = document.createElement("span");
-  //   errorElement.classList.add("error-text");
-  //   errorElement.innerText = "CPF Inválido";
-  //   this.cpf.parentElement.insertBefore(errorElement,
-  //     this.cpf.nextElementSibling
-  //   );
-  // }
+  addErrorSpan() {
+    const errorElement = document.createElement("span");
+    errorElement.classList.add("error-text");
+    errorElement.innerText = "CPF Inválido";
+    this.cpf.parentElement.insertBefore(errorElement, this.cpf.nextElementSibling);
+  }
 }
