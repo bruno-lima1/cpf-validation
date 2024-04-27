@@ -45,8 +45,8 @@
 // export default class CpfValidation {
 //   constructor(cpf) {
 //     this.cpf = document.getElementById(cpf)
+//     this.preventDefault = this.preventDefault.bind(this);
 //     this.returnCpf = this.returnCpf.bind(this)
-//     this.preventDefault = this.preventDefault.bind(this)
 //   }
 //   init() {
 //     if (this.cpf) {
@@ -56,11 +56,11 @@
 //     return this;
 //   }
 //   addEvent() {
-//    this.cpf.addEventListener("change", this.returnCpf)
-//    this.cpf.addEventListener("keydown", this.preventDefault) 
+//     this.cpf.addEventListener("keydown", this.preventDefault);
+//     this.cpf.addEventListener("change", this.returnCpf)
 //   }
 //   preventDefault(event) {
-//     if (event.key === "Enter") {
+//     if (event.key === 'Enter') {
 //       event.preventDefault()
 //     }
 //   }
@@ -73,14 +73,14 @@
 //   format(cpf) {
 //     return this.build(this.clear(cpf))
 //   }
+//   validation() {
+//     const matchCpf = this.cpf.value.match(/(\d{3}[.-]?){3}\d{2}/gi);
+//     return matchCpf && matchCpf[0] === this.cpf.value
+//   }
 //   returnCpf() {
 //     return this.validation()
 //       ? (this.cpf.value = this.format(this.cpf.value), this.cpf.classList.add("valid"), this.cpf.classList.remove("error"), this.cpf.nextElementSibling.classList.remove("active"))
 //       : (this.cpf.classList.add("error"), this.cpf.classList.remove("valid"), this.cpf.nextElementSibling.classList.add("active"))
-//   }
-//   validation() {
-//     const matchCpf = this.cpf.value.match(/(\d{3}[.-]?){3}\d{2}/gi)
-//     return matchCpf && matchCpf[0] === this.cpf.value;
 //   }
 //   errorMessage() {
 //     const span = document.createElement("span");
