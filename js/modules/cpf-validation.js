@@ -45,7 +45,6 @@
 // export default class CpfValidation {
 //   constructor(cpf) {
 //     this.cpf = document.getElementById(cpf)
-//     this.preventDefault = this.preventDefault.bind(this);
 //     this.returnCpf = this.returnCpf.bind(this)
 //   }
 //   init() {
@@ -56,26 +55,26 @@
 //     return this;
 //   }
 //   addEvent() {
-//     this.cpf.addEventListener("keydown", this.preventDefault);
+//     this.cpf.addEventListener("keydown", this.preventDefault)
 //     this.cpf.addEventListener("change", this.returnCpf)
 //   }
 //   preventDefault(event) {
-//     if (event.key === 'Enter') {
+//     if (event.key === "Enter") {
 //       event.preventDefault()
 //     }
 //   }
-//   clear(cpf) {
-//     return cpf.replace(/\D/gi, "")
-//   }
-//   build(cpf) {
-//     return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/gi, "$1.$2.$3-$4")
-//   }
-//   format(cpf) {
-//     return this.build(this.clear(cpf))
-//   }
 //   validation() {
-//     const matchCpf = this.cpf.value.match(/(\d{3}[.-]?){3}\d{2}/gi);
+//     const matchCpf = this.cpf.value.match(/(\d{3}[.-]?){3}\d{2}/gi)
 //     return matchCpf && matchCpf[0] === this.cpf.value
+//   }
+//   clear() {
+//     return this.cpf.value.replace(/\D/gi, "")
+//   }
+//   build() {
+//     return this.cpf.value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/gi, "$1.$2.$3-$4")
+//   }
+//   format() {
+//     return this.build(this.clear(this.cpf.value))
 //   }
 //   returnCpf() {
 //     return this.validation()
